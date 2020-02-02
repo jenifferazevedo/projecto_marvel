@@ -1,12 +1,15 @@
-import React, { useState, useEffect, Component } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import { Icon } from 'antd';
 import Head from 'next/head';
 import Nav from '../components/nav';
+import { Provider } from 'react-redux';
+import store from '../store'
 
 export default function Index() {
   return (
     <div>
+      <Provider store={store}>
       <div>
         <Head>
           <title>Projecto Marvel</title>
@@ -28,6 +31,7 @@ export default function Index() {
       }
     `}
       </style>
+      </Provider>
     </div>
   );
 }
