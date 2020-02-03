@@ -24,7 +24,6 @@ function FormLogin({states, dispatch}) {
         password: senha
       }).then((response) => {
         if(response.data.logado == true){
-          console.log('Você está logado');
           states.loginState = response.data.item;
           dispatch(setLoginState(states));
           router.push('/profile');

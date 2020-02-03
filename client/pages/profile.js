@@ -11,7 +11,6 @@ export default function profile() {
   const [hero, setHero] = useState("");
   const [error, setError] = useState("");
   const router = useRouter();
-  console.log(store.getState());
   if (store.getState().loginState == "") {
     return(
       <Provider store={store}>
@@ -25,6 +24,7 @@ export default function profile() {
     return (
       <Provider store={store}>
         <h1>Seu hero perfil!</h1>
+        <UserPlataform />
       </Provider>
     )
 }
