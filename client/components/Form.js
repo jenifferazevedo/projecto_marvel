@@ -1,15 +1,18 @@
 import React, { useState, useEffect, Component } from 'react';
 import ReactDOM from 'react-dom';
 import styled from 'styled-components';
-import { connect, connectAdvanced } from 'react-redux';
+import { connect, Provider } from 'react-redux';
 import api from '../lib/api';
+import store from '../store';
+import { setLoginState } from '../store/actions';
 
 
-export default function FormLogin(props) {
+function FormLogin({states, dispatch}) {
   const [usuario, setUsuario] = useState('');
   const [error, setError] = useState("");
   const [senha, setSenha] = useState ("");
   const [login, setLogin] = useState ("");
+  
 
   function validationUser(e) {
     e.preventDefault();
@@ -20,12 +23,14 @@ export default function FormLogin(props) {
       }).then((response) => {
         if(response.data.logado == true){
           console.log('Você está logado');
-          setLogin(response.data.item);
+          states.loginState = response.data.item;
+          dispatch(setLoginState(states));
         } else {setError('Usuario/E-mail ou Senha erradas, tente novamente!')}
       })
     } else {setError('Prencha o formulario')};
   }
   return(
+    <Provider store={store}>
       <form name="logIn" method="post" action="#">
       <label>
       <input id="user" value={usuario} type="text" onChange={input => setUsuario(input.target.value)} onFocus={() => setError("")} placeholder="Usuário ou E-mail"/>
@@ -40,5 +45,8 @@ export default function FormLogin(props) {
       <button type="submit" onClick={validationUser}>Log In</button>
       <p>{error}</p>
     </form>
+    </Provider>
   )
 }
+
+export default connect(state => ({states: state}))(FormLogin);
