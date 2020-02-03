@@ -1,5 +1,6 @@
-import React from 'react'
-import Link from 'next/link'
+import React from 'react';
+import { useRouter } from 'next/router';
+import Link from 'next/link';
 
 /*const links = [
   { href: 'https://zeit.co/now', label: 'ZEIT' },
@@ -17,7 +18,7 @@ const Nav = () => (
   <nav>
     <ul>
       <li>
-        <Link href='/'>
+        <Link href='/login'>
           <a>Login</a>
         </Link>
       </li>

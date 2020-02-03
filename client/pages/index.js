@@ -4,8 +4,9 @@ import { Icon } from 'antd';
 import Head from 'next/head';
 import Nav from '../components/nav';
 import { Provider } from 'react-redux';
-import store from '../store'
-import Routes from '../routes';
+import store from '../store';
+import { useRouter } from 'next/router';
+import Link from 'next/link';
 
 export default function Index() {
   return (

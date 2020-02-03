@@ -5,6 +5,8 @@ import { connect, Provider } from 'react-redux';
 import api from '../lib/api';
 import store from '../store';
 import { setLoginState } from '../store/actions';
+import { useRouter } from 'next/router';
+import Link from 'next/link';
 
 
 function FormLogin({states, dispatch}) {
@@ -13,7 +15,7 @@ function FormLogin({states, dispatch}) {
   const [senha, setSenha] = useState ("");
   const [login, setLogin] = useState ("");
   
-
+  const router = useRouter();
   function validationUser(e) {
     e.preventDefault();
     if (usuario.length != 0 && senha.length != 0){
@@ -25,6 +27,7 @@ function FormLogin({states, dispatch}) {
           console.log('Você está logado');
           states.loginState = response.data.item;
           dispatch(setLoginState(states));
+          router.push('/profile');
         } else {setError('Usuario/E-mail ou Senha erradas, tente novamente!')}
       })
     } else {setError('Prencha o formulario')};
