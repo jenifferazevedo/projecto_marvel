@@ -5,7 +5,7 @@ import { setLoginOut } from '../../store/actions';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
 
-function LogOut({states, dispatch}) {
+function LogOut({ states, dispatch }) {
   const [state, setState] = useState("");
   const [hero, setHero] = useState("");
   const [error, setError] = useState("");
@@ -17,8 +17,25 @@ function LogOut({states, dispatch}) {
   }
   return (
     <Provider store={store}>
-      <button onClick={() => reset()}>LogOut</button>
+      <ul>
+        <li><a onClick={() => reset()}>LogOut</a></li>
+      </ul>
+      <style jsx>{`
+        ul {
+        list-style: none;
+        }
+        a {
+          color: black;
+          text-transform: uppercase;
+          font-size: 1.2em;
+          font-weight: bold;
+          padding: 10px 15px;
+          text-decoration: none;
+          cursor: pointer;
+        }
+    `}
+      </style>
     </Provider>
   )
 }
-export default connect(state => ({states: state}))(LogOut);
+export default connect(state => ({ states: state }))(LogOut);
