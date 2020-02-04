@@ -11,7 +11,7 @@ import Link from 'next/link';
 export default function Index() {
   return (
       <Provider store={store}>
-        <body>
+        <div className='body'>
           <Head>
             <title>Projecto Marvel</title>
           </Head>
@@ -23,7 +23,7 @@ export default function Index() {
             </p>
             <Icon type="snippets" />
           </div>
-        </body>
+        </div>
         <style jsx>{`
         .hero {
           text-align: center;
@@ -34,12 +34,13 @@ export default function Index() {
           padding: 20px 20px;
           box-sizing: border-box;
           }
-        body {
+        .body {
           width: 100%;
           padding: 0;
           margin: 0;
           background: url('../static/marvel-background.jpg') no-repeat fixed center;
           background-size: cover;
+          height: 500px;
         }
         `}
         </style>

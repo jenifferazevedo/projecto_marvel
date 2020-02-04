@@ -8,10 +8,8 @@ import { Md5 } from 'ts-md5/dist/md5';
 import Link from 'next/link';
 
 const Infos = styled.div`
-display: flex;
 padding: 20px 2.5%;
-flex-wrap: wrap;
-justify-content: space-evenly;
+text-align: center;
 
 `
 const MolduraFoto = styled.div`
@@ -19,7 +17,7 @@ border-radius: 10px;
 overflow: hidden;
 width: 20%;
 min-width: 200px;
-display: inline-flex;
+margin: 0 auto;
 `
 
 export default function UserPlataform() {
@@ -27,47 +25,39 @@ export default function UserPlataform() {
   const [error, setError] = useState("");
   const state =  store.getState().loginState;
   var timestamp = Number(new Date());
-  var hash = Md5.hashStr(timestamp + '3c355a8692e8e0606e7de6f0382aba9fa0558a1a487afa6c3d1c9319977fad1adf14df03');
   const marvel = "../../static/marvel.jpg";
+  var hash = Md5.hashStr(timestamp + '4444e8da031d1f20ea9c6c70d5ba93ab955640f0bb2d6a9a4b2848060e6062abe2d67b5c');
+
 
   function getMyHero() {
-     axios.get(`https://gateway.marvel.com:443/v1/public/characters/${state.heroId}?ts=${timestamp}&apikey=487afa6c3d1c9319977fad1adf14df03&hash=${hash}`, {'apiKey': '3c355a8692e8e0606e7de6f0382aba9fa0558a1a'}).then((response) => {
-      setHero(response.data)})
-      .catch((error) => {
-        setError("Não foi possivel acessar as informações! Tente novamente mais tarde!");
-      });
+  axios.get(`https://gateway.marvel.com:443/v1/public/characters/${state.heroId}?ts=${timestamp}&apikey=bb2d6a9a4b2848060e6062abe2d67b5c&hash=${hash}`).then((response) => { setHero(response.data)})
+  .catch((error) => {setError("Please, do again the log in!");});
   };
- 
-  const infoHero = hero.data;
-  function teste(e) {
-    console.log(infoHero);
-  }
+  getMyHero();
   return (
       <div>
-        <h1 style={{textAlign: "center"}}>Bem vindo <span style={{fontSize: ".8em"}}>{state.name ? state.name : "Nome do usuário"}</span>!</h1>
+        <h1 style={{textAlign: "center"}}>Welcome <span style={{fontSize: ".8em"}}>{state.name ? state.name : "Nome do usuário"}</span>!</h1>
+        <p  style={{textAlign: "center"}}>{error}</p>
         <Infos>
         <MolduraFoto>
-          <img src={marvel} alt="fotohero" />
+          <img src={hero.data ? hero.data.results[0].thumbnail.path + "." + hero.data.results[0].thumbnail.extension : marvel} alt="fotohero" />
         </MolduraFoto>
-        <div style={{textAlign: "left", flexGrow:"2", paddingLeft: "20px"}}>
-        <h3>Nome do seu comic</h3>
-        <p>Descrição do Heroi!</p>
+        <div style={{ paddingLeft: "20px"}}>
+        <h3>{hero.data ? hero.data.results[0].name : "Character name"}</h3>
+        <p>{hero.data ? hero.data.results[0].description : "Description"}</p>
         </div>
         <div style={{width: "100%", textAlign:"center"}}>
-          <h4>Ultimos comics lançados!</h4>
+          <h4>Last comics</h4>
           <ul>
-            <li>Comic 1</li>
-            <li>Comic 2</li>
-            <li>Comic 3</li>
-            <li>Comic 4</li>
-            <li>Comic 5</li>
+            <li>{hero.data ? hero.data.results[0].comics.items[3].name : "Comic #"}</li>
+            <li>{hero.data ? hero.data.results[0].comics.items[2].name : "Comic #"}</li>
+            <li>{hero.data ? hero.data.results[0].comics.items[1].name : "Comic #"}</li>
+            <li>{hero.data ? hero.data.results[0].comics.items[0].name : "Comic #"}</li>
+            <li>{hero.data ? hero.data.results[0].comics.items[4].name : "Comic #"}</li>
           </ul>
-          <button href='https://www.marvel.com/comics' target="_blank">Veja outros comics</button>
+          <button href='https://www.marvel.com/comics' target="_blank">Know more comic!</button>
         </div>
         </Infos>
-        <br />
-        <br />
-        <button onClick={() => teste()}>Teste</button>
         <style jsx>{`
         a {
           text-decoration: none;

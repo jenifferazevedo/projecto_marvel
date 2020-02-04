@@ -27,20 +27,20 @@ function FormLogin({states, dispatch}) {
           states.loginState = response.data.item;
           dispatch(setLoginState(states));
           router.push('/profile');
-        } else {setError('Usuario/E-mail ou Senha erradas, tente novamente!')}
+        } else {setError('User/E-mail or Password wrong!')}
       })
-    } else {setError('Prencha o formulario')};
+    } else {setError('Fill the Form')};
   }
   return(
     <Provider store={store}>
       <form name="logIn" method="post" action="#">
       <label>
-      <input id="user" value={usuario} type="text" onChange={input => setUsuario(input.target.value)} onFocus={() => setError("")} placeholder="Usuário ou E-mail"/>
+      <input id="user" value={usuario} type="text" onChange={input => setUsuario(input.target.value)} onFocus={() => setError("")} placeholder="User ou E-mail"/>
       </label>
       <br />
       <br />
       <label>
-        <input id="senha" value={senha} type="text" onChange={input => setSenha(input.target.value)} onFocus={() => setError("")} placeholder="Senha" />
+        <input id="senha" value={senha} type="text" onChange={input => setSenha(input.target.value)} onFocus={() => setError("")} placeholder="Password" />
       </label>
       <br />
       <br />

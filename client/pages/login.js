@@ -24,14 +24,14 @@ export default function Index() {
   const router = useRouter();
   return (
     <Provider store={store}>
-      <body>
+      <div className='body'>
         <Navbar onClick={() => router.push('/')}>
         </Navbar>
         <div className='formDiv'>
           <FormLogin className='form' />
         </div>
         <style jsx>{`
-        body {
+        .body {
           width: 100%;
           margin: 0;
           padding: 0;
@@ -56,7 +56,7 @@ export default function Index() {
         }
         `}
         </style>
-      </body>
+      </div>
     </Provider>
   )
 }

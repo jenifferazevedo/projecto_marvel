@@ -37,14 +37,14 @@ export default function profile() {
   } */
     return (
       <Provider store={store}>
-        <body>
+        <div className='body'>
         <Navbar>
           <LogOut />
         </Navbar>
         <UserPlataform />
-        </body>
+        </div>
         <style jsx>{`
-        body {
+        .body {
           width: 100%;
           margin: 0;
           padding: 0;
