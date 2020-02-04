@@ -47,6 +47,32 @@ function FormLogin({states, dispatch}) {
       <button type="submit" onClick={validationUser}>Log In</button>
       <p>{error}</p>
     </form>
+    <style jsx>{`
+        form {
+          text-align: center;
+        }
+        input {
+          border-radius: 5px;
+          box-shadow: 0px 1px 3px 0px rgba(0,0,0,0.3);
+          box-sizing: border-box;
+          padding: 5px 5px;
+        }
+        button {
+          font-family: "Times New Roman", Times, serif;
+          font-weight: bold;
+          font-size: 1em;
+          padding: 5px 10px;
+          box-shadow: 0px 0px 4px 0px rgba(0,0,0,0.3);
+          border-radius: 5px;
+          cursor: pointer;
+        }
+        button:hover {
+          border: none;
+          background: rgba(0,0,0,0.8);
+          color: white;
+        }
+        `}
+    </style>
     </Provider>
   )
 }
