@@ -16,7 +16,7 @@
     "babel-plugin-import": "^1.9.1",
     "concurrently": "^5.1.0",
     "css-animation": "1.5.0",
-    "next": "9.2.1",
+    "next": "9.3.2",
     "null-loader": "2.0.0",
     "react": "16.12.0",
     "react-dom": "16.12.0",
